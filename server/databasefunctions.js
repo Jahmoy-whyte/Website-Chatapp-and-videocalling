@@ -1,7 +1,7 @@
 import mysql from "mysql2/promise";
 import "dotenv/config";
 const connection = mysql.createPool(process.env.DATABASE_API_KEY);
-
+console.log(process.env.DATABASE_API_KEY);
 const getdata = async (data) => {
   try {
     const [rows, fields] = await connection.execute(

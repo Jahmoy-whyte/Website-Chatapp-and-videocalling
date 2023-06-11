@@ -22,7 +22,9 @@ const useChat_page = () => {
   }, [messages]);
 
   useEffect(() => {
-    const socket = io("http://localhost:3000/");
+    const socket = io(
+      "https://website-chat-app-videocall-server.onrender.com/"
+    );
 
     socketref.current = socket;
     const id = SetidandGetid();

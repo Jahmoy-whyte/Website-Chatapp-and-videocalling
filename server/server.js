@@ -42,7 +42,7 @@ io.on("connection", (socket) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("server up on 3000");
+  res.send("server up on " + process.env.PORT);
 });
 
 httpServer.listen(process.env.PORT || 3000, () => {

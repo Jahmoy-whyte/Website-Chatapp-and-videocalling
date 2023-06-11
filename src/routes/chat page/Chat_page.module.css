@@ -1,0 +1,270 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.siderbar {
+  background-color: #105b6c;
+}
+
+.siderbar > div {
+  background-color: white;
+  border-radius: 6px;
+  margin: 10px 10px 0px 10px;
+  padding: 5px;
+}
+
+.siderbar > div > img {
+  width: 30px;
+  height: 30px;
+}
+/*======================================================= whoseonline ===================*/
+.whoseonline {
+  background-color: white;
+  min-width: 200px;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-right: 5px solid #f0f0f0;
+}
+
+.whoseonline > span {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.whoseonline > span > h1 {
+  font-size: 2rem;
+}
+
+.whoseonline > section {
+  margin-top: 10px;
+  gap: 5px;
+  background-color: #dedede;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 6px 10px 6px 10px;
+  border-radius: 100px;
+}
+.whoseonline > section > img {
+  width: 20px;
+  height: 20px;
+}
+.whoseonline > section > input {
+  background-color: transparent;
+  flex: 1;
+  border: none;
+  outline: none;
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.topbar {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 0.5px solid #b3b3b3;
+}
+.menu {
+  width: 20px;
+  visibility: hidden;
+}
+
+.groupcall {
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  border-radius: 20px;
+  background-color: #128199;
+}
+
+.topbar > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.topbar > div > h1 {
+  font-size: 1.6rem;
+}
+
+.topbar > div > p {
+  font-size: 0.8rem;
+}
+
+.messagesection {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  flex: 1;
+  overflow-y: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.textsection {
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0px 10px 0px;
+}
+
+.inputdiv {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  background-color: #dedede;
+  border-radius: 100px;
+  padding: 10px 20px 10px 20px;
+}
+.inputdiv > input {
+  flex: 1;
+  outline: none;
+  background-color: transparent;
+  border: 0px;
+}
+.btn {
+  background-color: #128199;
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn:hover {
+  background-color: #105b6c;
+}
+.btn:active {
+  transform: scale(0.95);
+}
+.btn > img {
+  width: 20px;
+}
+
+/* ======================= mobilemenu ===========================*/
+.background {
+  background-color: rgba(0, 0, 0, 0.24);
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+
+  animation: backgroundanimations 0.5s;
+}
+
+@keyframes backgroundanimations {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes whoseonlinemobilemenu {
+  from {
+    transform: translate(-260px, 0px);
+  }
+  to {
+    transform: translate(0px, 0px);
+  }
+}
+
+.whoseonlinemobile {
+  background-color: white;
+  min-width: 200px;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  padding-right: 20px;
+  animation: whoseonlinemobilemenu 0.2s;
+}
+.whoseonlinemobile > span {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.whoseonlinemobile > span > h1 {
+  font-size: 2rem;
+}
+.closediv > section {
+  gap: 5px;
+  background-color: #dedede;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 6px 10px 6px 10px;
+  border-radius: 100px;
+}
+.closediv > section > img {
+  width: 20px;
+  height: 20px;
+}
+.closediv > section > input {
+  background-color: transparent;
+  flex: 1;
+  border: none;
+  outline: none;
+}
+.closediv {
+  margin-top: 10px;
+  gap: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.closediv > img {
+  width: 20px;
+  height: 20px;
+}
+
+.loadingcss {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+@media screen and (max-width: 767px) {
+  /* start of medium tablet styles */
+  .siderbar {
+    display: none;
+  }
+  .whoseonline {
+    display: none;
+  }
+  .menu {
+    visibility: visible;
+  }
+  .inputdiv {
+    width: auto;
+    flex: 1;
+  }
+
+  .textsection {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  /* start of phone styles */
+}

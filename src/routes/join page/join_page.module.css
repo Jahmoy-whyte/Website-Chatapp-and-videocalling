@@ -1,0 +1,132 @@
+.container {
+  background-color: #105b6c;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.headingdiv {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+
+.headingdiv > img {
+  width: 48px;
+  height: 48px;
+}
+
+.headingdiv > h1 {
+  color: white;
+  font-size: 1.8rem;
+}
+.contentcontainerdiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  overflow-y: auto;
+}
+.contentboxdiv {
+  overflow-y: auto;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  background-color: white;
+  border-radius: 6px;
+  padding: 40px;
+}
+.contentboxdiv > span {
+  margin-bottom: 40px;
+}
+.contentboxdiv > span > h1 {
+  font-size: 1.5rem;
+}
+.contentboxdiv > span > p {
+  font-size: 1rem;
+  color: #878787;
+}
+
+.contentboxdiv > div > h4 {
+  font-size: 1rem;
+}
+
+.contentboxdiv > div {
+  display: flex;
+  flex-direction: column;
+}
+.contentboxdiv > div > input {
+  border-radius: 6px;
+
+  outline: none;
+  padding: 8px;
+  border: 0.5px solid #b3b3b3;
+  margin-bottom: 20px;
+}
+
+.contentboxdiv > button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #105b6c;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+}
+
+.contentboxdiv > button:hover {
+  background-color: #085364;
+}
+
+.contentboxdiv > button:active {
+  transform: scale(0.98);
+}
+
+.cir1 {
+  width: 80vh;
+  height: 80vh;
+  background-color: #128199;
+  position: absolute;
+  border-radius: 80vh;
+  z-index: 1;
+  left: -15vh;
+  top: -15vh;
+}
+
+.cir2 {
+  width: 80vh;
+  height: 80vh;
+  background-color: #128199;
+  position: absolute;
+  border-radius: 80vh;
+  z-index: 1;
+  right: -15vh;
+  bottom: -15vh;
+}
+
+@media screen and (max-width: 767px) {
+  .cir1 {
+    width: 50vh;
+    height: 50vh;
+  }
+
+  .cir2 {
+    width: 50vh;
+    height: 50vh;
+  }
+}

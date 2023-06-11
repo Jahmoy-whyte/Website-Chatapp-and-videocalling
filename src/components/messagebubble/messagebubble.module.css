@@ -1,0 +1,56 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  background-color: #128199;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile > h1 {
+  color: white;
+  font-size: 1rem;
+}
+
+.msgsection {
+  display: flex;
+  flex-direction: column;
+}
+
+.msgsection > h2 {
+  font-size: 1rem;
+}
+
+.txtdiv {
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  max-width: 250px;
+}
+.txtdiv > p {
+  word-break: break-all;
+  font-size: 1rem;
+}
+.timestamp {
+  align-self: flex-end;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+}
+
+.timestamp > p {
+  font-size: 0.8rem;
+}
+
+.timestamp > img {
+  width: 20px;
+  height: 20px;
+}

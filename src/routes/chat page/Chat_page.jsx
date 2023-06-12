@@ -106,9 +106,16 @@ const Chat_page = () => {
           </div>
 
           <section className={css.messagesection} ref={scrollref}>
-            {messages.map((data, index) => {
-              return <Messagebubble data={data} myid={myid} key={index} />;
-            })}
+            {menushow.loading === false ? (
+              messages.map((data, index) => {
+                return <Messagebubble data={data} myid={myid} key={index} />;
+              })
+            ) : (
+              <div className={css.loadingcss2}>
+                <ClipLoader color="#128199" size={30} title="wdwdwdd" />
+                <p>Connecting</p>
+              </div>
+            )}
           </section>
 
           <div className={css.textsection}>

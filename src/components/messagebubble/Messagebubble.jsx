@@ -10,7 +10,7 @@ const Messagebubble = ({ data, myid }) => {
         className={css.profile}
         style={{ display: data.userid === myid ? "none" : null }}
       >
-        <h1>J</h1>
+        <h1>{data.name.substring(0, 1).toUpperCase()}</h1>
       </div>
       <div className={css.msgsection}>
         <h2>{data.userid === myid ? "Me" : data.name}</h2>

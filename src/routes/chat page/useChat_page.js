@@ -58,6 +58,10 @@ const useChat_page = () => {
       //   snum += scrollref.current.scrollHeight;
     });
 
+    //  socket.on("disconnect", () => {
+    //    console.log("socket.id"); // undefined
+    //   });
+
     socket.on("connect", () => {
       console.log(socket.id); // x8WIv7-mJelg7on_ALbx
     });

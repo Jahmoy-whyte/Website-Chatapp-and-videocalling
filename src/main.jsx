@@ -3,10 +3,10 @@ import ReactDOM from "react-dom/client";
 import App from "./routes/join page/Join_page.jsx";
 import "./index.css";
 import Chat_page from "./routes/chat page/Chat_page.jsx";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <App />,

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const useChat_page = () => {
   const [data, setdata] = useState([]);
   const [txt, settxt] = useState("");
@@ -13,19 +14,22 @@ const useChat_page = () => {
   const myid = useRef();
   const scrollref = useRef();
   // Generate a unique ID
-
-  const { name } = locat.state;
+  const nav = useNavigate();
   //console.log(name);
 
-  useEffect(() => {
-    scrollref.current.scrollTop = scrollref.current.scrollHeight;
-  }, [messages]);
+  let name;
+  if (locat.state === null) {
+    nav("/");
+  } else {
+    name = locat.state.name;
+  }
 
   useEffect(() => {
     const socket = io(
       "https://website-chat-app-videocall-server.onrender.com/"
     );
-
+    // "https://website-chat-app-videocall-server.onrender.com/"
+    //"http://localhost:3000/"
     socketref.current = socket;
     const id = SetidandGetid();
     myid.current = id;
@@ -69,6 +73,10 @@ const useChat_page = () => {
     return () => socket.disconnect();
   }, []);
 
+  useEffect(() => {
+    scrollref.current.scrollTop = scrollref.current.scrollHeight;
+  }, [messages]);
+
   const SetidandGetid = () => {
     const id = localStorage.getItem("userid");
     if (id === null) {
@@ -104,6 +112,7 @@ const useChat_page = () => {
     scrollref,
     menushow,
     setmenushow,
+    nav,
   ];
 };
 

@@ -1,5 +1,5 @@
 import css from "./Chat_page.module.css";
-import icon from "../../assets/images/chaticon.svg";
+import icon from "../../assets/images/chat1.svg";
 import search from "../../assets/images/search.svg";
 import sendimg from "../../assets/images/send.svg";
 import publiccall from "../../assets/images/publiccall.svg";
@@ -7,7 +7,7 @@ import menu from "../../assets/images/menu.svg";
 import close from "../../assets/images/close.svg";
 import useChat_page from "./useChat_page";
 import Onlinecards from "../../components/onlinecards/Onlinecards";
-import { useState } from "react";
+
 import Messagebubble from "../../components/messagebubble/Messagebubble";
 
 import ClipLoader from "react-spinners/ClipLoader";
@@ -23,6 +23,7 @@ const Chat_page = () => {
     scrollref,
     menushow,
     setmenushow,
+    nav,
   ] = useChat_page();
 
   return (
@@ -102,7 +103,11 @@ const Chat_page = () => {
               <p>{data.length} Online</p>
             </div>
 
-            <img className={css.groupcall} src={publiccall} />
+            <img
+              className={css.groupcall}
+              src={publiccall}
+              onClick={() => nav("/groupcall")}
+            />
           </div>
 
           <section className={css.messagesection} ref={scrollref}>

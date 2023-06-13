@@ -11,15 +11,15 @@
 }
 
 .siderbar > div {
-  background-color: white;
-  border-radius: 6px;
   margin: 10px 10px 0px 10px;
-  padding: 5px;
 }
 
 .siderbar > div > img {
+  border-radius: 6px;
   width: 30px;
+  background-color: white;
   height: 30px;
+  padding: 5px;
 }
 /*======================================================= whoseonline ===================*/
 .whoseonline {
@@ -88,6 +88,9 @@
   padding: 5px;
   border-radius: 20px;
   background-color: #128199;
+}
+.groupcall:active {
+  transform: scale(0.95);
 }
 
 .topbar > div {

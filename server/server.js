@@ -33,10 +33,18 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("chat-messages-res", { ...msg, time: time1 });
   });
 
-  socket.on("disconnect", async () => {
-    //console.log(socket.id); // the Set contains at least the socket ID
-    const repsonce = await disconnectuser(socket.id);
+  socket.on("joinedgroupcall", (peerdata) => {
+    socket.broadcast.emit("joinedgroupcall-res", {
+      ...peerdata,
+      socketid: socket.id,
+    });
+  });
 
+  socket.on("disconnect", async () => {
+    console.log("idisconnected"); // the Set contains at least the socket ID
+
+    socket.broadcast.emit("user-disconnected-groupcall", socket.id);
+    const repsonce = await disconnectuser(socket.id);
     socket.broadcast.emit("main-chat-res", repsonce);
   });
 });

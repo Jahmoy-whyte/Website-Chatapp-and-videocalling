@@ -70,7 +70,7 @@ const useChat_page = () => {
       console.log(socket.id); // x8WIv7-mJelg7on_ALbx
     });
 
-    return () => socket.disconnect();
+    //return () => socket.disconnect();
   }, []);
 
   useEffect(() => {

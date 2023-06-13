@@ -25,13 +25,13 @@ const useGroupcall = () => {
 
     socket.on("connect", () => {
       mysocketidref.current = socket.id;
-      peer.on("open", (id) => {
-        console.log("My peer ID is: " + id);
-        setmyid(id);
-        socket.emit("joinedgroupcall", { peerid: id, active: true });
-      });
+      console.log("THIS ID MY SOCKET ID : " + socket.id);
     });
-
+    peer.on("open", (id) => {
+      console.log("My peer ID is: " + id);
+      setmyid(id);
+      socket.emit("joinedgroupcall", { peerid: id, active: true });
+    });
     var getUserMedia =
       navigator.getUserMedia ||
       navigator.webkitGetUserMedia ||

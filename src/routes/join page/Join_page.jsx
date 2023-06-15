@@ -31,6 +31,19 @@ function Join_page() {
                 type="text"
                 placeholder="Enter Name"
                 onChange={(e) => setname(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    if (name === "") {
+                      toast.warn("Please Enter Username");
+                      return;
+                    }
+                    nav("/chat", {
+                      state: {
+                        name: name,
+                      },
+                    });
+                  }
+                }}
                 value={name}
               />
             </div>

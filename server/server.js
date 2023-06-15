@@ -15,13 +15,13 @@ io.on("connection", (socket) => {
   // const res = await userconnected();
   //socket.broadcast.emit("main-chat-res", res);
 
-  socket.on("main-chat", async (arg) => {
+  socket.on("joined-chat", async (arg) => {
     // console.log(arg); // world
     const data = await startuser({ ...arg, socketid: socket.id });
-    socket.emit("main-chat-res", data);
+    socket.emit("joined-chat-res", data);
 
     const res = await userconnected();
-    socket.broadcast.emit("main-chat-res", res);
+    socket.broadcast.emit("joined-chat-res", res);
   });
 
   socket.on("chat-messages", (msg) => {
@@ -45,7 +45,7 @@ io.on("connection", (socket) => {
 
     socket.broadcast.emit("user-disconnected-groupcall", socket.id);
     const repsonce = await disconnectuser(socket.id);
-    socket.broadcast.emit("main-chat-res", repsonce);
+    socket.broadcast.emit("joined-chat-res", repsonce);
   });
 });
 

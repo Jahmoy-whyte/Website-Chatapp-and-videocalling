@@ -1,8 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import { io } from "socket.io-client";
-import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Socketcontext } from "../../context/GBcontext";
+
 const useChat_page = () => {
+  const [prevsocketid, setprevsocketid] = useContext(Socketcontext);
   const [data, setdata] = useState([]);
   const [txt, settxt] = useState("");
   const [messages, setmessages] = useState([]);
@@ -25,22 +27,30 @@ const useChat_page = () => {
   }
 
   useEffect(() => {
+    //  console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
     const socket = io(
       "https://website-chat-app-videocall-server.onrender.com/"
     );
     // "https://website-chat-app-videocall-server.onrender.com/"
     //"http://localhost:3000/"
+
+    setprevsocketid("socket.id");
+
     socketref.current = socket;
     const id = SetidandGetid();
     myid.current = id;
 
-    socket.emit("main-chat", {
+    socket.on("connect", () => {
+      console.log(socket.id); // x8WIv7-mJelg7on_ALbx
+    });
+
+    socket.emit("joined-chat", {
       name: name === "" ? "enter name" : name,
       peerjsID: "",
       userid: id,
     });
 
-    socket.on("main-chat-res", (args) => {
+    socket.on("joined-chat-res", (args) => {
       console.log(args.res);
       setmenushow((prev) => ({ ...prev, loading: true }));
       if (args.res === "error") {
@@ -66,11 +76,7 @@ const useChat_page = () => {
     //    console.log("socket.id"); // undefined
     //   });
 
-    socket.on("connect", () => {
-      console.log(socket.id); // x8WIv7-mJelg7on_ALbx
-    });
-
-    //return () => socket.disconnect();
+    return () => socket.disconnect();
   }, []);
 
   useEffect(() => {
@@ -89,11 +95,15 @@ const useChat_page = () => {
   };
 
   const sendmessage = () => {
+    if (txt === "") return;
     socketref.current.emit("chat-messages", {
       name: name === "" ? "enter name" : name,
       userid: myid.current,
-      message: txt === "" ? "default test  message" : txt,
+      message: txt === "/test" ? "default test  message" : txt,
     });
+
+    if (txt === "/test") return;
+    settxt("");
   };
 
   const generateUniqueId = () => {

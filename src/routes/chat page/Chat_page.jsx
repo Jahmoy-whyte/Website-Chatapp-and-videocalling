@@ -5,6 +5,7 @@ import sendimg from "../../assets/images/send.svg";
 import publiccall from "../../assets/images/publiccall.svg";
 import menu from "../../assets/images/menu.svg";
 import close from "../../assets/images/close.svg";
+import startchat from "../../assets/images/startchat.svg";
 import useChat_page from "./useChat_page";
 import Onlinecards from "../../components/onlinecards/Onlinecards";
 
@@ -112,9 +113,15 @@ const Chat_page = () => {
 
           <section className={css.messagesection} ref={scrollref}>
             {menushow.loading === false ? (
-              messages.map((data, index) => {
-                return <Messagebubble data={data} myid={myid} key={index} />;
-              })
+              messages.length === 0 ? (
+                <div className={css.startchatdiv}>
+                  <p>Start Chatting!</p>
+                </div>
+              ) : (
+                messages.map((data, index) => {
+                  return <Messagebubble data={data} myid={myid} key={index} />;
+                })
+              )
             ) : (
               <div className={css.loadingcss2}>
                 <ClipLoader color="#128199" size={30} title="wdwdwdd" />

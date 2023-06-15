@@ -2,7 +2,7 @@ import useGroupcall from "./useGroupcall";
 import css from "./groupcall.module.css";
 import close from "../../assets/images/closewhite.svg";
 const Groupcall = () => {
-  const [data, myid, closecall, videoref, myvideo, showvideo] = useGroupcall();
+  const [data, closecall, videoref, myvideo, showvideo] = useGroupcall();
   return (
     <div className={css.container}>
       <button className={css.endcall} onClick={() => closecall()}>
@@ -17,7 +17,7 @@ const Groupcall = () => {
         {data.map((data, i) => {
           return (
             <div
-              key={data?.socketid}
+              key={i}
               className={css.videodiv}
               style={{
                 display: showvideo[i].active === false ? "none" : null,

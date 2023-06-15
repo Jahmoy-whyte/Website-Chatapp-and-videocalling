@@ -14,7 +14,7 @@ import { Socketcontext } from "./context/GBcontext.js";
 import Test from "./Test.jsx";
 
 const Routing = () => {
-  const router = createBrowserRouter([
+  const router = createHashRouter([
     {
       path: "/",
       element: <App />,

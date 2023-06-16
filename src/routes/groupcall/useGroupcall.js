@@ -76,9 +76,26 @@ const useGroupcall = () => {
         peerid: call.peer, // other user peer id
         socketid: call.metadata.socketid, // other user socket id
         callinfo: call,
+        active: call.metadata.active,
       });
-      setshowvideo((prev) => [...prev, usersvideodata.current]);
-      setdata((prev) => [...prev, usersvideodata.current]);
+      setshowvideo((prev) => [
+        ...prev,
+        {
+          peerid: call.peer, // other user peer id
+          socketid: call.metadata.socketid, // other user socket id
+          callinfo: call,
+          active: call.metadata.active,
+        },
+      ]);
+      setdata((prev) => [
+        ...prev,
+        {
+          peerid: call.peer, // other user peer id
+          socketid: call.metadata.socketid, // other user socket id
+          callinfo: call,
+          active: call.metadata.active,
+        },
+      ]);
       call.answer(stream); // Answer the call with an A/V stream.
       call.on("stream", (remoteStream) => {
         videoref.current[videoref.current.length - 1].srcObject = remoteStream;
@@ -109,7 +126,6 @@ const useGroupcall = () => {
         //
         //myvideo2.current.srcObject = null;
       }
-
       socket.disconnect();
       peer.destroy();
     };
@@ -121,7 +137,6 @@ const useGroupcall = () => {
   const closecall = () => {
     let stream = myvideo.current.srcObject;
     let tracks = stream.getTracks();
-
     tracks.forEach(function (track) {
       track.stop();
     });
@@ -138,9 +153,12 @@ const useGroupcall = () => {
     }; // we are sending our socket id to them in metadata
     var call = peerref.current.call(peerdata.peerid, stream, options);
 
-    usersvideodata.current.push({ ...peerdata, callinfo: call });
-    setshowvideo((prev) => [...prev, usersvideodata.current]);
-    setdata((prev) => [...prev, usersvideodata.current]);
+    usersvideodata.current.push({ ...peerdata, callinfo: call, active: true });
+    setshowvideo((prev) => [
+      ...prev,
+      { ...peerdata, callinfo: call, active: true },
+    ]);
+    setdata((prev) => [...prev, { ...peerdata, callinfo: call, active: true }]);
 
     call.on("stream", (remoteStream) => {
       // Show stream in some video/canvas element.
@@ -154,39 +172,18 @@ const useGroupcall = () => {
   const dis = (socketid) => {
     console.log("USER DISCONNECTED");
 
-    let res = -1;
-    for (let i = 0; i < usersvideodata.current.length; i++) {
-      if (usersvideodata.current[i].socketid === socketid) {
-        res = i;
-        break;
-      }
+    const find = usersvideodata.current.findIndex(
+      (item) => item.socketid === socketid
+    );
+
+    if (find > -1) {
+      usersvideodata.current[find].callinfo.close();
+      usersvideodata.current[find].active = false;
+      setshowvideo([...usersvideodata.current]);
     }
+    //  console.log(find);
 
-    //  console.log(newarr);
-    // console.log("================================================");
-    //console.log(data);
-    //  console.log("================================================");
-    //return;
-    if (res > -1) {
-      // let arr = [];
-      usersvideodata.current[res].callinfo.close();
-      usersvideodata.current[res].active = false;
-      setshowvideo(usersvideodata.current);
-
-      return;
-      for (let i = 0; i < usersvideodata.current.length; i++) {
-        if (usersvideodata.current[i].peerid === false) {
-          arr.push(usersvideodata.current[i]);
-        }
-      }
-
-      alert("found");
-    }
-    //  setdata(
-    //    usersvideodata.current.filter((id) => {
-    //      id !== socketid;
-    //   })
-    //  );
+    return;
   };
 
   return [data, closecall, videoref, myvideo, showvideo];

@@ -35,15 +35,17 @@
 }
 
 .endcall {
+  background-color: white;
   position: absolute;
-  bottom: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  bottom: 0px;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   border: none;
-  background-color: transparent;
 }
 
 .endcall > img {

@@ -42,12 +42,15 @@ const useChat_page = () => {
 
     socket.on("connect", () => {
       console.log(socket.id); // x8WIv7-mJelg7on_ALbx
+      socket.emit("joined-chat", {
+        name: name === "" ? "enter name" : name,
+        peerjsID: "",
+        userid: id,
+      });
     });
 
-    socket.emit("joined-chat", {
-      name: name === "" ? "enter name" : name,
-      peerjsID: "",
-      userid: id,
+    socket.on("disconnect", (reason) => {
+      setmenushow((prev) => ({ ...prev, loading: true }));
     });
 
     socket.on("joined-chat-res", (args) => {
@@ -95,6 +98,7 @@ const useChat_page = () => {
   };
 
   const sendmessage = () => {
+    console.log(socketref.current.connected);
     if (txt === "") return;
     socketref.current.emit("chat-messages", {
       name: name === "" ? "enter name" : name,

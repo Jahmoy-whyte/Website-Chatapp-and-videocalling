@@ -5,8 +5,8 @@ const Groupcall = () => {
   const [data, closecall, videoref, myvideo, showvideo] = useGroupcall();
   return (
     <div className={css.container}>
-      <button className={css.endcall} onClick={() => closecall()}>
-        <img src={close} />
+      <button className={css.endcall}>
+        <img src={close} onClick={() => closecall()} />
       </button>
 
       <section className={css.allvideocontainer}>
@@ -14,7 +14,7 @@ const Groupcall = () => {
           <video ref={myvideo} className={css.videotag} />
         </div>
 
-        {data.map((data, i) => {
+        {data.map((data1, i) => {
           return (
             <div
               key={i}
